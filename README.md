@@ -1,4 +1,4 @@
-# Standalone Cell Population calculation 
+# Cell Population calculation 
 
 ## Notes
 This standalone module is compatible with Python 3 (PhylogicNDT is only compatible with Python 2.7)
