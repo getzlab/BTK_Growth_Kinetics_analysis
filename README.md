@@ -1,7 +1,7 @@
 # Standalone Cell Population calculation 
 
 ## Notes
-This standalone module is compatible with Python 3 (PhylogicNDT is only compatibel with Python 2.7)
+This standalone module is compatible with Python 3 (PhylogicNDT is only compatible with Python 2.7)
 
 This module allows you to select the most likely tree and calcualtes the cell population based on the selected tree. Current PhylogicNDT output calculates cell abundance based on the top tree, which may not always be the case. 
 
