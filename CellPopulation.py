@@ -3,14 +3,14 @@ import logging
 def run_tool(args):
     logging.debug('Arguments {}'.format(args))
 
-    import PatientObject
-    import TreeObject
-    import CellPopulationEngine
-    import BuildTreeEngine
+    from PatientObject import Patient
+    from TreeObject import Tree
+    from CellPopulationEngine import CellPopulationEngine
+    from BuildTreeEngine import BuildTreeEngine
 
 
     # init a Patient
-    patient_data = PatientObject.Patient(indiv_name=args.indiv_id)
+    patient_data = Patient(indiv_name=args.indiv_id)
     # try:  # if sif file is specified
     # Patient load cluster and mut ccf files
     parse_sif_file(args.sif, args.mutation_ccf_file, patient_data)
@@ -18,14 +18,14 @@ def run_tool(args):
 
     # Select the tree number
     tree_edges = load_tree_edges_file(args.tree_tsv, tree_num=args.tree_number)
-    bt_engine = BuildTreeEngine.BuildTreeEngine(patient_data)
-    tree = TreeObject.Tree()
+    bt_engine = BuildTreeEngine(patient_data)
+    tree = Tree()
     tree.init_tree_from_clustering(patient_data.ClusteringResults)
     tree.set_new_edges(tree_edges)
     patient_data.TopTree = tree
     bt_engine.set_top_tree(tree)
     # Computing Cell Population
-    cp_engine = CellPopulationEngine.CellPopulationEngine(patient_data, seed=args.seed)
+    cp_engine = CellPopulationEngine(patient_data, seed=args.seed)
     constrained_ccf = cp_engine.compute_constrained_ccf()
 
     cell_ancestry = bt_engine.get_cell_ancestry()
